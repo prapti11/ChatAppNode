@@ -5,7 +5,7 @@ const app=express();
 const socketIO=require('socket.io');
 const http=require('http');
 const port=process.env.PORT||3000;
-const {generateMessage} = require('./utils/message');
+const {generateMessage,generateLocationMessage} = require('./utils/message');
 
 var server=http.createServer(app);
 app.use(express.static(publicPath));
@@ -25,15 +25,18 @@ callback("this is from server");
 
 });
 
+
+socket.on('createLocationMessage',function(message,callback){
+console.log("New Location Message Created",message);
+io.emit('newLocationMessage',generateLocationMessage('User',message.latitude,message.longitude));
+callback('this is from server');
+});
+
 socket.on('disconnect',function(socket){
 	console.log("user disconnected");
 });
 
-
-
 });
-
-
 
 server.listen(port,function(){
 	console.log("Server running at port "+port);
