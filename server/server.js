@@ -18,9 +18,11 @@ socket.emit('newMessage',generateMessage('Admin','Welcome User'));
 
 socket.broadcast.emit('newMessage',generateMessage('Admin','New user Joined'));
 
-socket.on('createMessage',function(message){
+socket.on('createMessage',function(message,callback){
 console.log("New Messgae Created",message);
 io.emit('newMessage',generateMessage(message.from,message.text));
+callback("this is from server");
+
 });
 
 socket.on('disconnect',function(socket){
