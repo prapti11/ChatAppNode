@@ -12,9 +12,21 @@ var io=socketIO(server);
 io.on('connection',function(socket){
 console.log("new user connected");
 
+socket.emit('newMessage',{
+	"from" : "abc",
+	"text" : "Hello",
+	"createdAt" : "16:66"
+});
+
+socket.on('createMessage',function(message){
+console.log("New Messgae Created",message);
+});
+
 socket.on('disconnect',function(socket){
 	console.log("user disconnected");
 });
+
+
 
 });
 
