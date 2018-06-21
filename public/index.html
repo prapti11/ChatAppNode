@@ -2,18 +2,27 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
 	<title>Chat App</title>
 </head>
-<body>
-<p>Welcome to chat app</p>
+<body class="chat">
 
-<ol id="messages"></ol>
+<div class="chat__sidebar">
+	<h3>People</h3>
+	<div id="users"></div>
+</div>
 
+<div class="chat__main">
+<ol class="chat__messages" id="messages"></ol>
+
+<div class="chat__footer">
 <form id="message-form">
-	<input type="text" name="message" placeholder="message">
+	<input type="text" name="message" placeholder="message" autofocus autocomplete="off">
 	<button>Send</button>
 </form>
 <button id="send-location">Send Location</button>
+</div>
+</div>
 
 
 
