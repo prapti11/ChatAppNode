@@ -12,6 +12,9 @@ const mongoose = require('mongoose');
 const _ = require('lodash');
 const bodyParser = require('body-parser');
 const User= require('../app/models/user');
+const Message= require('../app/models/message');
+const request = require('request');
+const moment=require('moment');
 
 mongoose.connect('mongodb://shobhit1997:shobhit1997@ds117111.mlab.com:17111/chat_app');
 
@@ -55,10 +58,26 @@ console.log("New Messgae Created",message);
 var user=users.getUser(socket.id);
 if(user){
 	io.to(user.room).emit('newMessage',generateMessage(message.from,message.text));
+	var msgBody={
+		from : message.from,
+		text : message.text,
+		room : user.room,
+		messageType : "text",
+		createdAt : moment().valueOf()
+	};
+	request.post({
+    "headers": { "content-type": "application/json" },
+    "url": "http://localhost:3000/api/messages",
+    "body": JSON.stringify(msgBody)
+	}, (error, response, body) => {
+    if(error) {
+        return console.dir(error);
+    }
+    console.dir(JSON.parse(body));
+	});
+
 }
-
 callback("this is from server");
-
 });
 
 
@@ -66,7 +85,26 @@ socket.on('createLocationMessage',function(message,callback){
 console.log("New Location Message Created",message);
 var user=users.getUser(socket.id);
 if(user){
-	io.to(user.room).emit('newLocationMessage',generateLocationMessage(user.name,message.latitude,message.longitude));
+
+	var locationMessage=generateLocationMessage(user.name,message.latitude,message.longitude);
+	io.to(user.room).emit('newLocationMessage',locationMessage);
+	var msgBody={
+		from : locationMessage.from,
+		text : locationMessage.url,
+		room : user.room,
+		messageType : "location",
+		createdAt : moment().valueOf()
+	};
+	request.post({
+    "headers": { "content-type": "application/json" },
+    "url": "http://localhost:3000/api/messages",
+    "body": JSON.stringify(msgBody)
+	}, (error, response, body) => {
+    if(error) {
+        return console.dir(error);
+    }
+    console.dir(JSON.parse(body));
+	});
 }
 callback('this is from server');
 });
@@ -113,6 +151,24 @@ router.route('/login')
 			res.status(400).send(e);
 		});
 
+	});
+router.route('/messages/:room')
+	.get(function(req,res){
+		var room=req.params.room;
+		Message.find({room}).then(function(messages){
+			res.send(messages);
+		});
+	});	
+
+router.route('/messages')
+	.post(function(req,res){
+		var body=_.pick(req.body,['from','text','room','messageType','createdAt']);
+		var message=new Message(body);
+		message.save().then(function(message){
+			res.send(message);
+		}).catch(function(e){
+			res.status(400).send(e);
+		});
 	});
 
 app.use('/api',router);
