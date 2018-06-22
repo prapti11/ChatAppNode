@@ -67,7 +67,7 @@ if(user){
 	};
 	request.post({
     "headers": { "content-type": "application/json" },
-    "url": "http://localhost:3000/api/messages",
+    "url": "https://thawing-mesa-63770.herokuapp.com/api/messages",
     "body": JSON.stringify(msgBody)
 	}, (error, response, body) => {
     if(error) {
@@ -97,7 +97,7 @@ if(user){
 	};
 	request.post({
     "headers": { "content-type": "application/json" },
-    "url": "http://localhost:3000/api/messages",
+    "url": "https://thawing-mesa-63770.herokuapp.com/api/messages",
     "body": JSON.stringify(msgBody)
 	}, (error, response, body) => {
     if(error) {

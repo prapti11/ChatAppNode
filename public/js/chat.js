@@ -30,6 +30,45 @@ socket.on('connect',function() {
 			console.log("No error");
 		}
 	});
+
+	var xhttp = new XMLHttpRequest();
+  	xhttp.onreadystatechange = function() {
+	    if (this.readyState == 4 && this.status == 200) {
+	      console.log(this.responseText);
+	      var messages=JSON.parse(this.responseText);
+	      console.log(messages);
+	      messages.forEach(function(message){
+				if(message.messageType==="text"){
+					var formattedTime = moment(message.createdAt).format('MMM Do, YYYY h:mm a');
+					var template = jQuery('#message-template').html();
+					var html = Mustache.render(template,{
+					 	text : message.text,
+					 	from : message.from,
+					 	createdAt : formattedTime
+					 });
+					jQuery('#messages').append(html);
+				}
+				else{
+					var formattedTime = moment(message.createdAt).format('MMM Do, YYYY h:mm a');
+					var template = jQuery('#location-message-template').html();
+					var html = Mustache.render(template,{
+					 	url : message.url,
+					 	from : message.from,
+					 	createdAt : formattedTime
+					});
+					jQuery('#messages').append(html);
+					
+				}
+				scrollToBottom();
+			});
+
+	    }
+  	};
+  	xhttp.open("GET", "https://thawing-mesa-63770.herokuapp.com/api/messages/"+params.room, true);
+  	xhttp.setRequestHeader("Content-type", "application/json");
+  	xhttp.send();
+
+
 	
 });
 socket.on('disconnect',function(users){
