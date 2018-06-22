@@ -9,7 +9,7 @@ e.preventDefault();
       window.location.href='/chat.html?name='+user.name+'&room='+jQuery("[name='room']").val();
     }
   };
-  xhttp.open("POST", "http://localhost:3000/api/signup", true);
+  xhttp.open("POST", "https://thawing-mesa-63770.herokuapp.com/api/signup", true);
   xhttp.setRequestHeader("Content-type", "application/json");
   var jsonObj={
     name : jQuery("[name='name']").val(),
