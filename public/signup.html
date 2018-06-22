@@ -9,13 +9,17 @@
 <body class="centered-form">
 
 	<div class="centered-form__form">
-		<form id="login-form">
+		<form id="signup-form">
 		<div class="form-field">
 			<h3>Join a Chat</h3>
 		</div>
 		<div class="form-field">
+			<label>Display Name</label>
+			<input type="text" name="name" autofocus/>
+		</div>
+		<div class="form-field">
 			<label>Phone No.</label>
-			<input type="number" name="phone" autofocus/>
+			<input type="number" name="phone"/>
 		</div>
 		<div class="form-field">
 			<label>Password</label>
@@ -28,15 +32,10 @@
 		<div class="form-field">
 			<button>Join</button>
 		</div>
-		<div class="form-field">
-			<p>Don't have a account? 
-			<a href="/signup.html">Sign In</a>
-		</p>
-		</div>
 		</form>
 	</div>
 
 <script type="text/javascript" src="/js/libs/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/signup.js"></script>
 </body>
 </html>

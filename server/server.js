@@ -20,9 +20,10 @@ app.use(bodyParser.json());
 
 
 app.use(function(req,res,next){
-	res.setHeader('Access-Control-Allow-Origin','*');
-	res.setHeader('Access-Control-Expose-Header','x-auth');
-	res.setHeader('Access-Control-Allow-Header','Origin, X-Requested-With,content-type,Accept');
+	res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Expose-Headers', 'x-auth');
+    res.setHeader('Access-Control-Allow-Headers','Origin, X-Requested-With,content-type, Accept');
+  
 	next();
 });
 
