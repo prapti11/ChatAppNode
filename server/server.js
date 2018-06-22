@@ -33,7 +33,11 @@ socket.on('join',function(params,callback){
 });
 socket.on('createMessage',function(message,callback){
 console.log("New Messgae Created",message);
-io.emit('newMessage',generateMessage(message.from,message.text));
+var user=users.getUser(socket.id);
+if(user){
+	io.to(user.room).emit('newMessage',generateMessage(message.from,message.text));
+}
+
 callback("this is from server");
 
 });
@@ -41,7 +45,10 @@ callback("this is from server");
 
 socket.on('createLocationMessage',function(message,callback){
 console.log("New Location Message Created",message);
-io.emit('newLocationMessage',generateLocationMessage('User',message.latitude,message.longitude));
+var user=users.getUser(socket.id);
+if(user){
+	io.to(user.room).emit('newLocationMessage',generateLocationMessage(user.name,message.latitude,message.longitude));
+}
 callback('this is from server');
 });
 
