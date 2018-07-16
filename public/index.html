@@ -5,37 +5,58 @@
 	<title>Join | ChatApp</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	 <meta name="viewport" content="width=device-width, initial-scale=1">
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
-<body class="centered-form">
+<body>
 
-	<div class="centered-form__form">
-		<form id="login-form">
-		<div class="form-field">
-			<h3>Join a Chat</h3>
-		</div>
-		<div class="form-field">
-			<label>Phone No.</label>
-			<input type="number" name="phone" autofocus/>
-		</div>
-		<div class="form-field">
-			<label>Password</label>
-			<input type="password" name="password" />
-		</div>
-		<div class="form-field">
-			<label>Room Name</label>
-			<input type="text" name="room"/>
-		</div>
-		<div class="form-field">
-			<button>Join</button>
-		</div>
-		<div class="form-field">
-			<p>Don't have a account? 
-			<a href="/signup.html">Sign In</a>
-		</p>
-		</div>
-		</form>
-	</div>
-
+	<div class="content">
+  	<div class="overlay">
+      <div class="container">
+      	<div class="row">
+      		<div class="col-md-12">
+      			<div class="text">
+			        <h1><i>Welcome to the Chat Room</i></h1>
+			        <center><div class="horizontal"></div></center>
+			        <p>Missing your closeones?? <br> Connect with your friends,relatives here. . .</p>
+			    </div>
+		    
+		        <div class="login"">
+			        <div class="main">
+				    <div class="top-content">
+				         <i class="fa fa-comments" aria-hidden="true"></i><br>
+				         <h3>Join A Chat</h3>
+			            </div>
+			            <form id="login-form">
+                                      <div class="input-group">
+                                          <span class="input-group-addon"><i class="fa fa-phone"  aria-hidden="true"></i></span>
+                                          <input id="phone" type="number" class="form-control " name="phone" placeholder="Phone No.">
+                                      </div>
+                                      <div class="input-group">
+                                          <span class="input-group-addon"><i class="fa fa-lock"  aria-hidden="true"></i></span>
+                                          <input id="password" type="password" class="form-control " name="password" placeholder="Password">
+                                      </div>
+                                      <div class="input-group">
+                                          <span class="input-group-addon"><i class="fa fa-building-o"  aria-hidden="true"></i></span>
+                                          <input id="room" type="text" class="form-control " name="room" placeholder="Room Name">
+                                      </div>
+                                      <br>
+                                      <button>Join</button>
+                                  </form>
+                                  <br>
+                                  <br>
+                            <p class="bottom-content">Don't have an account? <a href="/signup.html"><i>SIGN UP</i></a></p>
+			        </div>    
+      	        </div>
+            </div>
+  	    </div>
+      </div>
+  </div>
+</div>
 <script type="text/javascript" src="/js/libs/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="/js/index.js"></script>
 </body>
