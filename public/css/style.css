@@ -100,11 +100,17 @@ body{
 	border-radius: 0;
 	background:none;
 }
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
 button{
  	background-color:rgba(255, 116, 25,1.0);
  	border:none;
  	border-bottom: 1px solid rgba(255, 116, 25,1.0);
- 	color: #fff;
+ 	color: #fff !important;
  	margin: 40px,0;
  	font-size: 20px;
  	width: 100px;
@@ -113,8 +119,9 @@ button{
  button:hover{
  	background: none;
  	border: 1px solid rgba(255, 116, 25,1.0);
- 	color: rgba(255, 116, 25,1.0);
+ 	color: rgba(255, 116, 25,1.0) !important;
  }
+
  .bottom-content{
  	color: #fff;
  }
